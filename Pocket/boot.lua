@@ -51,7 +51,7 @@ function main()
 
         local menuOptions = {
             "1. Lancer un programme",
-            "2. Exploorer",
+            "2. Explorer",
             "3. Changer la couleur",
             "4. Lumieres",
             "5. Quitter",
