@@ -147,8 +147,8 @@ function runProgram()
         term.setCursorPos(centerText("Appuyez sur une touche pour continuer..."), 5)
         os.pullEvent("key") -- Attendre que l'utilisateur appuie sur une touche
 
-        -- Exécute le code du programme en utilisant loadstring
-        local success, err = loadstring(programCode)
+        -- Exécute le code du programme en utilisant load
+        local success, err = load(programCode, "=" .. programName, "t", _G)
         if success then
             success()  -- Exécute le code
         else
@@ -166,10 +166,11 @@ function runProgram()
         term.setCursorPos(centerText(separator), 6)
         print(separator)
 
-        term.setCursorPos(centerText("Appuyez sur une touche pour continuer..."), 7)
+        term.setCursorPos(centerText("Appuyez sur une toouche pour continuer..."), 7)
         os.pullEvent("key") -- Attendre que l'utilisateur appuie sur une touche
     end
 end
+
 
 
 
