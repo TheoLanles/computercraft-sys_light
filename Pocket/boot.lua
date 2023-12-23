@@ -119,11 +119,12 @@ function runProgram()
     print(separator)
 
     term.setCursorPos(2, 4)
-    write("Entrez le programme : ")
-    term.setCursorPos(4, 6)
+    write("Entrez le nom du programme : ")
     local programName = read()
 
-    local program = fs.open(programName, "r")
+    local programPath = shell.resolve(programName)
+    local program = fs.open(programPath, "r")
+    
     if program then
         local programCode = program.readAll()
         program.close()
@@ -163,6 +164,7 @@ function runProgram()
         os.pullEvent("key") -- Attendre que l'utilisateur appuie sur une touche
     end
 end
+
 
 -- Fonction pour centrer le texte
 function centerText(text)
