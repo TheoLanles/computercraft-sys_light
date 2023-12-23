@@ -89,7 +89,7 @@ function main()
                 clearScreen()
                 print("Redémarrage en cours...")
                 sleep(2)
-                shell.run("exit")
+                shell.run("t")
             elseif selectedOption == 6 then
                 shell.run("update.lua")
                 return
