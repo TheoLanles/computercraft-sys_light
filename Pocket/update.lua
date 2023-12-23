@@ -15,7 +15,7 @@ local fichiers = {
     { cheminGitHub = "Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
     { cheminGitHub = "Pocket/client.lua", cheminLocal = "/client.lua" },
     { cheminGitHub = "Pocket/config.lua", cheminLocal = "/config.lua" },
-    --{ cheminGitHub = "Pocket/update.lua", cheminLocal = "/update.lua" },
+    { cheminGitHub = "Pocket/update.lua", cheminLocal = "/update.lua" },
     -- Ajoutez autant de fichiers que nécessaire
 }
 
