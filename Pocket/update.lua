@@ -46,3 +46,5 @@ print("== Mise a jour terminée ==")
 print("Redémarrage en cours...")
 os.sleep(5)  -- Attendez un instant pour afficher le message
 shell.run("reboot")
+
+end
