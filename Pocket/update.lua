@@ -45,4 +45,4 @@ end
 print("== Mise a jour terminée ==")
 print("Redémarrage en cours...")
 os.sleep(1)  -- Attendez un instant pour afficher le message
-shell.run("reboot")
+shell.run("boot.lua")
