@@ -55,7 +55,8 @@ function main()
             "3. Changer la couleur",
             "4. Lumieres",
             "5. Quitter",
-            "6. Mise a jour"
+            "6. Mise a jour",
+            "7. Console"
         }
 
         for i, option in ipairs(menuOptions) do
@@ -92,6 +93,8 @@ function main()
                 shell.run("reboot")
             elseif selectedOption == 6 then
                 shell.run("update.lua")
+            elseif selectedOption == 7 then
+                shell.run("shell")
                 return
                 -- Ajoutez ici le code pour la fonction "Faites un choix"
             end
