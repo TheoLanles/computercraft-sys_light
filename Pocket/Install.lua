@@ -1,43 +1,32 @@
-local filesToDownload = {
-    {pastebin = "VQjpEnAa", path = "/boot.lua"},
-    {pastebin = "Cwwjbdu4", path = "/startup.lua"},
-    {pastebin = "R0Cq6TYQ", path = "/client.lua"},
-    {pastebin = "eedPz59Z", path = "/config.lua"},
-    {pastebin = "u3S85kCk", path = "/update.lua"},
-    -- Ajoutez d'autres fichiers si nécessaire
+-- Charge le système de fichiers virtuel (VFS) pour GitHub
+if not fs.exists("/lib/vfs/github.lua") then
+    shell.run("pastebin get <PASTEBIN_CODE> /lib/vfs/github.lua")
+end
+local github = require("/lib/vfs/github")
+
+-- Spécifiez l'utilisateur, le référentiel et la liste des fichiers sur GitHub
+local utilisateur = "TheoLanles"
+local repo = "computercraft-sys_light"
+local fichiers = {
+    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/boot.lua", cheminLocal = "/boot.lua" },
+    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
+    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/client.lua", cheminLocal = "/client.lua" },
+    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/config.lua", cheminLocal = "/config.lua" },
+    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/update.lua", cheminLocal = "/update.lua" },
+    -- Ajoutez autant de fichiers que nécessaire
 }
- 
--- Fonction pour télécharger un fichier depuis Pastebin
-local function downloadFromPastebin(pastebinId, destinationPath)
-    local url = "https://pastebin.com/raw/" .. pastebinId
-    local response = http.get(url)
- 
-    if response then
-        local content = response.readAll()
-        response.close()
- 
-        local file = fs.open(destinationPath, "w")
-        file.write(content)
-        file.close()
-        return true  -- Téléchargement réussi
+
+-- Télécharge chaque fichier depuis GitHub
+for _, fichier in ipairs(fichiers) do
+    if github.downloadFile(utilisateur, repo, fichier.cheminGitHub, fichier.cheminLocal) then
+        print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
+        -- Charge le fichier téléchargé en tant que programme Lua
+        local programme = fs.open(fichier.cheminLocal, "r")
+        local code = programme.readAll()
+        programme.close()
+        -- Exécute le code du programme
+        load(code)()
     else
-        return false  -- Échec du téléchargement
+        print("Échec du téléchargement de " .. fichier.cheminGitHub)
     end
 end
- 
-print("== Début de l'installation ==")
- 
-for _, file in pairs(filesToDownload) do
-    print("Téléchargement depuis Pastebin : " .. file.pastebin)
-    if downloadFromPastebin(file.pastebin, file.path) then
-        print("Téléchargement terminé : " .. file.path)
-    else
-        print("Échec du téléchargement depuis Pastebin : " .. file.pastebin)
-        return  -- Arrête l'installation en cas d'échec
-    end
-end
- 
-print("== Installation terminée ==")
-print("Redémarrage en cours...")
-os.sleep(1)  -- Attendez un instant pour afficher le message
-shell.run("reboot")
