@@ -26,6 +26,10 @@ for _, fichier in ipairs(fichiers) do
 
     if contenu then
         print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
+        print("== Mise a jour terminée ==")
+        print("Redémarrage en cours...")
+        os.sleep(5)  -- Attendez un instant pour afficher le message
+        shell.run("reboot")
 
         -- Enregistre le contenu téléchargé localement
         local programme = fs.open(fichier.cheminLocal, "w")
@@ -37,13 +41,10 @@ for _, fichier in ipairs(fichiers) do
        -- if not success then
         --    print("Erreur lors de l'exécution de " .. fichier.cheminLocal .. ": " .. err)
         --end
-    --else
-  --      print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
-   -- end
+     --else
+        --print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
+   end
 
-        print("== Mise a jour terminée ==")
-        print("Redémarrage en cours...")
-        os.sleep(5)  -- Attendez un instant pour afficher le message
-        shell.run("reboot")
+        
 
 end
