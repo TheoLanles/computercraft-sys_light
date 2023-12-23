@@ -36,6 +36,5 @@ for _, fichier in ipairs(fichiers) do
 print("== Mise à jour terminée ==")
 print("Redémarrage en cours...")
 os.sleep(3)  -- Attendez un instant pour afficher le message
-shell.run("reboot")
-
+os.reboot()
   end
