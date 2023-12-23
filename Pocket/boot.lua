@@ -275,7 +275,7 @@ function selectHighlightColor()
         print("Choix invalide. Réessayez")
         sleep(2) -- Attend quelques secondes pour que l'utilisateur puisse lire le message d'erreur
     end
---end
+end
 
 -- Programme principal
 main()
