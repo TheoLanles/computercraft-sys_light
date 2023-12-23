@@ -16,17 +16,22 @@ local fichiers = {
     -- Ajoutez autant de fichiers que nécessaire
 }
 
--- Supprime chaque fichier local s'il existe
-for _, fichier in ipairs(fichiers) do
-  if fs.exists(fichier.cheminLocal) then
-      local success, err = pcall(fs.delete, fichier.cheminLocal)
+local function supprimerFichier(fichier)
+  if fs.exists(fichier) then
+      local success, err = pcall(fs.delete, fichier)
       if success then
-          print("Suppression de l'ancien fichier " .. fichier.cheminLocal)
+          print("Suppression de l'ancien fichier " .. fichier)
       else
-          print("Erreur lors de la suppression de l'ancien fichier " .. fichier.cheminLocal .. ": " .. err)
+          print("Erreur lors de la suppression de " .. fichier .. ": " .. err)
       end
   end
 end
+
+-- Supprime chaque fichier local s'il existe
+for _, fichier in ipairs(fichiers) do
+  supprimerFichier(fichier.cheminLocal)
+end
+
 
 -- Télécharge chaque fichier depuis GitHub
 for _, fichier in ipairs(fichiers) do
