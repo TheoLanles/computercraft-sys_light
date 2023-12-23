@@ -2,7 +2,7 @@
 local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
 local fichiers = {
-    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/boot.lua", cheminLocal = "/boot.lua" },
+    { cheminGitHub = "https://raw.githubusercontent.com/TheoLanles/computercraft-sys_light/main/Pocket/boot.lua", cheminLocal = "/boot.lua" },
     { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
     { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/client.lua", cheminLocal = "/client.lua" },
     { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/config.lua", cheminLocal = "/config.lua" },
