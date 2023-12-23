@@ -2,11 +2,11 @@
 local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
 local fichiers = {
-    { cheminGitHub = "TheoLanles/computercraft-sys_light/main/Pocket/boot.lua", cheminLocal = "/boot.lua" },
-    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
-    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/client.lua", cheminLocal = "/client.lua" },
-    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/config.lua", cheminLocal = "/config.lua" },
-    { cheminGitHub = "/computercraft-sys_light/blob/main/Pocket/update.lua", cheminLocal = "/update.lua" },
+    { cheminGitHub = "Pocket/boot.lua", cheminLocal = "/boot.lua" },
+    { cheminGitHub = "Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
+    { cheminGitHub = "Pocket/client.lua", cheminLocal = "/client.lua" },
+    { cheminGitHub = "Pocket/config.lua", cheminLocal = "/config.lua" },
+    { cheminGitHub = "Pocket/update.lua", cheminLocal = "/update.lua" },
     -- Ajoutez autant de fichiers que nécessaire
 }
 
