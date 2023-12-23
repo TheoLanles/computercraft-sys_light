@@ -36,5 +36,4 @@ for _, fichier in ipairs(fichiers) do
     else
         print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
     end
-end
-
+  end
