@@ -95,7 +95,6 @@ function main()
                 shell.run("update.lua")
             elseif selectedOption == 7 then
                 clearScreen()
-                term.setBackgroundColor(black)
                 shell.run("shell")
                 return
                 -- Ajoutez ici le code pour la fonction "Faites un choix"
