@@ -53,5 +53,5 @@ end
 -- Affiche un message de mise à jour terminée
 print("== Mise à jour terminée ==")
 print("Redémarrage en cours...")
-os.sleep(3)  -- Attendez un instant pour afficher le message
+os.sleep(5)  -- Attendez un instant pour afficher le message
 os.reboot()  -- Redémarre l'ordinateur de manière propre
