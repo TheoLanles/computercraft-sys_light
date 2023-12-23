@@ -29,7 +29,7 @@ for _, fichier in ipairs(fichiers) do
         print("== Mise a jour terminée ==")
         print("Redémarrage en cours...")
         os.sleep(5)  -- Attendez un instant pour afficher le message
-        shell.run("reboot")
+        shell.run("boot.lua")
 
         -- Enregistre le contenu téléchargé localement
         local programme = fs.open(fichier.cheminLocal, "w")
