@@ -10,11 +10,19 @@ local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
 local fichiers = {
     { cheminGitHub = "Pocket/boot.lua", cheminLocal = "/boot.lua" },
-    { cheminGitHub = "Pocket/startup.lua", cheminLocal = "/startup.lua" },
+    { cheminGitHub = "Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
     { cheminGitHub = "Pocket/client.lua", cheminLocal = "/client.lua" },
     { cheminGitHub = "Pocket/config.lua", cheminLocal = "/config.lua" },
     -- Ajoutez autant de fichiers que nécessaire
 }
+
+-- Supprime chaque fichier local s'il existe
+for _, fichier in ipairs(fichiers) do
+    if fs.exists(fichier.cheminLocal) then
+        fs.delete(fichier.cheminLocal)
+        print("Suppression de l'ancien fichier " .. fichier.cheminLocal)
+    end
+end
 
 -- Télécharge chaque fichier depuis GitHub
 for _, fichier in ipairs(fichiers) do
@@ -31,10 +39,10 @@ for _, fichier in ipairs(fichiers) do
     else
         print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
     end
-
-  -- Affiche un message de mise à jour terminée
-  print("== Mise à jour terminée ==")
-  print("Redémarrage en cours...")
-  os.sleep(3)  -- Attendez un instant pour afficher le message
-  os.reboot()
 end
+
+-- Affiche un message de mise à jour terminée
+print("== Mise à jour terminée ==")
+print("Redémarrage en cours...")
+os.sleep(3)  -- Attendez un instant pour afficher le message
+os.reboot()  -- Redémarre l'ordinateur de manière propre
