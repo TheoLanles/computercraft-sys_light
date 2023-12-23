@@ -10,7 +10,7 @@ local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
 local fichiers = {
     { cheminGitHub = "Pocket/boot.lua", cheminLocal = "/boot.lua" },
-    { cheminGitHub = "Pocket/startup.lua.lua", cheminLocal = "/startup.lua" },
+    { cheminGitHub = "Pocket/startup.lua", cheminLocal = "/startup.lua" },
     { cheminGitHub = "Pocket/client.lua", cheminLocal = "/client.lua" },
     { cheminGitHub = "Pocket/config.lua", cheminLocal = "/config.lua" },
     -- Ajoutez autant de fichiers que nécessaire
