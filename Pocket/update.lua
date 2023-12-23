@@ -1,13 +1,11 @@
 local backgroundColor = colors.white
 local textColor = colors.black
 
+term.setBackgroundColor(backgroundColor)
+term.clear()
+term.setCursorPos(1, 1)
+term.setTextColor(textColor)
 
-  term.setBackgroundColor(backgroundColor) -- Fond modifier
-  term.clear()
-  term.setCursorPos(1, 1)
-  term.setTextColor(textColor)
-
--- Spécifiez l'utilisateur, le référentiel et la liste des fichiers sur GitHub
 local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
 local fichiers = {
@@ -25,24 +23,22 @@ for _, fichier in ipairs(fichiers) do
 
     if contenu then
         print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
-        print("== Mise a jour terminée ==")
-        print("Redémarrage en cours...")
-        os.sleep(3)  -- Attendez un instant pour afficher le message
-        shell.run("reboot")
 
         -- Enregistre le contenu téléchargé localement
-        --local programme = fs.open(fichier.cheminLocal, "w")
-        --programme.write(contenu.readAll())
-        --programme.close()
+        local programme = fs.open(fichier.cheminLocal, "w")
+        programme.write(contenu.readAll())
+        programme.close()
+    else
+        print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
+    end
+end
 
-        -- Exécute le code du programme
-        --local success, err = pcall(dofile, fichier.cheminLocal)
-       -- if not success then
-        --    print("Erreur lors de l'exécution de " .. fichier.cheminLocal .. ": " .. err)
-        --end
-     --else
-        --print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
-   end
+-- Affiche un message de mise à jour terminée
+print("== Mise à jour terminée ==")
+print("Redémarrage en cours...")
+os.sleep(3)  -- Attendez un instant pour afficher le message
+shell.run("reboot")
+
 
         
 
