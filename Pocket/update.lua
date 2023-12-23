@@ -16,26 +16,27 @@ local fichiers = {
     -- Ajoutez autant de fichiers que nécessaire
 }
 
-local function supprimerFichier(fichier)
-  if fs.exists(fichier) then
-      local success, err = pcall(fs.delete, fichier)
-      if success then
-          print("Suppression de l'ancien fichier " .. fichier)
-      else
-          print("Erreur lors de la suppression de " .. fichier .. ": " .. err)
-      end
-  end
+-- Fonction pour supprimer un fichier avec gestion des erreurs
+local function supprimerFichier(chemin)
+    if fs.exists(chemin) then
+        local success, err = pcall(fs.delete, chemin)
+        if success then
+            print("Suppression de l'ancien fichier " .. chemin)
+        else
+            print("Erreur lors de la suppression de " .. chemin .. ": " .. tostring(err))
+        end
+    end
 end
 
 -- Supprime chaque fichier local s'il existe
 for _, fichier in ipairs(fichiers) do
-  supprimerFichier(fichier.cheminLocal)
+    supprimerFichier(fichier.cheminLocal)
 end
-
 
 -- Télécharge chaque fichier depuis GitHub
 for _, fichier in ipairs(fichiers) do
     local cheminGitHub = "https://raw.githubusercontent.com/" .. utilisateur .. "/" .. repo .. "/main/" .. fichier.cheminGitHub
+    print("Téléchargement de " .. fichier.cheminGitHub .. "...")
     local contenu, erreur = http.get(cheminGitHub)
 
     if contenu then
@@ -43,15 +44,20 @@ for _, fichier in ipairs(fichiers) do
 
         -- Enregistre le contenu téléchargé localement
         local programme = fs.open(fichier.cheminLocal, "w")
-        programme.write(contenu.readAll())
-        programme.close()
+        if programme then
+            programme.write(contenu.readAll())
+            programme.close()
+            print("Mise à jour du fichier " .. fichier.cheminLocal)
+        else
+            print("Erreur lors de l'écriture du fichier " .. fichier.cheminLocal)
+        end
     else
-        print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
+        print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. tostring(erreur))
     end
 end
 
 -- Affiche un message de mise à jour terminée
 print("== Mise à jour terminée ==")
 print("Redémarrage en cours...")
-os.sleep(8)  -- Attendez un instant pour afficher le message
+os.sleep(3)  -- Attendez un instant pour afficher le message
 os.reboot()  -- Redémarre l'ordinateur de manière propre
