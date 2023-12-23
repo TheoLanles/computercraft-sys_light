@@ -1,21 +1,3 @@
--- Charge le système de fichiers virtuel (VFS) pour GitHub
-local githubPath = "/lib/vfs/github.lua"
-if not fs.exists(githubPath) then
-    print("Téléchargement de la bibliothèque GitHub VFS...")
-    local githubVfsCode = http.get("https://raw.githubusercontent.com/someuser/someproject/master/lib/vfs/github.lua")
-    if githubVfsCode then
-        local githubVfsFile = fs.open(githubPath, "w")
-        githubVfsFile.write(githubVfsCode.readAll())
-        githubVfsFile.close()
-        githubVfsCode.close()
-    else
-        error("Impossible de télécharger la bibliothèque GitHub VFS.")
-    end
-end
-
--- Charge la bibliothèque GitHub VFS
-local github = require("/lib/vfs/github")
-
 -- Spécifiez l'utilisateur, le référentiel et la liste des fichiers sur GitHub
 local utilisateur = "TheoLanles"
 local repo = "computercraft-sys_light"
@@ -30,19 +12,23 @@ local fichiers = {
 
 -- Télécharge chaque fichier depuis GitHub
 for _, fichier in ipairs(fichiers) do
-    local cheminLocal = fichier.cheminLocal
-    if github.downloadFile(utilisateur, repo, fichier.cheminGitHub, cheminLocal) then
+    local cheminGitHub = "https://raw.githubusercontent.com/" .. utilisateur .. "/" .. repo .. "/main/" .. fichier.cheminGitHub
+    local contenu, erreur = http.get(cheminGitHub)
+
+    if contenu then
         print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
-        -- Charge le fichier téléchargé en tant que programme Lua
-        local programme = fs.open(cheminLocal, "r")
-        local code = programme.readAll()
+
+        -- Enregistre le contenu téléchargé localement
+        local programme = fs.open(fichier.cheminLocal, "w")
+        programme.write(contenu.readAll())
         programme.close()
+
         -- Exécute le code du programme
-        local success, err = pcall(load(code))
+        local success, err = pcall(dofile, fichier.cheminLocal)
         if not success then
-            print("Erreur lors de l'exécution de " .. fichier.cheminGitHub .. ": " .. err)
+            print("Erreur lors de l'exécution de " .. fichier.cheminLocal .. ": " .. err)
         end
     else
-        print("Échec du téléchargement de " .. fichier.cheminGitHub)
+        print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
     end
 end
