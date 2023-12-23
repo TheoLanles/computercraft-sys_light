@@ -1,8 +1,8 @@
 -- Charge le système de fichiers virtuel (VFS) pour GitHub
-if not fs.exists("/lib/vfs/github.lua") then
-    shell.run("pastebin get <PASTEBIN_CODE> /lib/vfs/github.lua")
-end
-local github = require("/lib/vfs/github")
+--if not fs.exists("/lib/vfs/github.lua") then
+   -- shell.run("pastebin get <PASTEBIN_CODE> /lib/vfs/github.lua")
+--end
+--local github = require("/lib/vfs/github")
 
 -- Spécifiez l'utilisateur, le référentiel et la liste des fichiers sur GitHub
 local utilisateur = "TheoLanles"
