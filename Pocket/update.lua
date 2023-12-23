@@ -68,6 +68,7 @@ if suppressionReussie then
     end
 else
     print("La suppression des anciens fichiers a échoué. Aucune mise à jour n'a été effectuée.")
+    os.reboot()  -- Redémarre l'ordinateur de manière propre
 end
 -- Affiche un message de mise à jour terminée
 print("== Mise à jour terminée ==")
