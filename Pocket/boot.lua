@@ -139,7 +139,7 @@ function runProgram()
 
         term.setTextColor(textColor)
         term.setCursorPos(2, 3)
-        print("Nom duu programme: " .. programName)
+        print("Nom du programme: " .. programName)
 
         term.setCursorPos(centerText(separator), 4)
         print(separator)
