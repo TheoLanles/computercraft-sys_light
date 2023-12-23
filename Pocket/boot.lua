@@ -44,7 +44,7 @@ function main()
     while true do
         clearScreen()
         term.setTextColor(textColor)
-        local menuTitle = "  == Mon OS == V.1.1"
+        local menuTitle = "  == Mon OS == V.1.2"
         term.setCursorPos(centerText(menuTitle), 1)
         print(menuTitle)
         print(string.rep("-", 26)) -- Ligne horizontale
