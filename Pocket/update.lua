@@ -33,13 +33,13 @@ for _, fichier in ipairs(fichiers) do
         programme.close()
 
         -- Exécute le code du programme
-        local success, err = pcall(dofile, fichier.cheminLocal)
-        if not success then
-            print("Erreur lors de l'exécution de " .. fichier.cheminLocal .. ": " .. err)
-        end
+        --local success, err = pcall(dofile, fichier.cheminLocal)
+       -- if not success then
+        --    print("Erreur lors de l'exécution de " .. fichier.cheminLocal .. ": " .. err)
+        --end
     else
-        print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
-    end
+  --      print("Échec du téléchargement de " .. fichier.cheminGitHub .. ": " .. (erreur or "Erreur inconnue"))
+   -- end
 end
 
 print("== Mise a jour terminée ==")
