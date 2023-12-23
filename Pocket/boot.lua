@@ -147,7 +147,13 @@ function runProgram()
         term.setCursorPos(centerText("Appuyez sur une touche pour continuer..."), 5)
         os.pullEvent("key") -- Attendre que l'utilisateur appuie sur une touche
 
-        shell.run(programCode)
+        -- Exécute le code du programme en utilisant loadstring
+        local success, err = loadstring(programCode)
+        if success then
+            success()  -- Exécute le code
+        else
+            print("Erreur lors de l'exécution de " .. programName .. ": " .. err)
+        end
     else
         clearScreen()
         term.setTextColor(textColor)
@@ -164,6 +170,7 @@ function runProgram()
         os.pullEvent("key") -- Attendre que l'utilisateur appuie sur une touche
     end
 end
+
 
 
 -- Fonction pour centrer le texte
