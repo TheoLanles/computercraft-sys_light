@@ -32,7 +32,7 @@ for _, fichier in ipairs(fichiers) do
         shell.run("reboot")
 
         -- Enregistre le contenu téléchargé localement
-        local programme = fs.open(fichier.cheminLocal, "w")
+        --local programme = fs.open(fichier.cheminLocal, "w")
         --programme.write(contenu.readAll())
         --programme.close()
 
