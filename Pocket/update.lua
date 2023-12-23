@@ -26,12 +26,9 @@ for _, fichier in ipairs(fichiers) do
 
     if contenu then
         print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
-        print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
-        print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
-        print("Téléchargement de " .. fichier.cheminGitHub .. " réussi.")
         print("== Mise a jour terminée ==")
         print("Redémarrage en cours...")
-        os.sleep(5)  -- Attendez un instant pour afficher le message
+        os.sleep(3)  -- Attendez un instant pour afficher le message
         shell.run("reboot")
 
         -- Enregistre le contenu téléchargé localement
