@@ -18,10 +18,14 @@ local fichiers = {
 
 -- Supprime chaque fichier local s'il existe
 for _, fichier in ipairs(fichiers) do
-    if fs.exists(fichier.cheminLocal) then
-        fs.delete(fichier.cheminLocal)
-        print("Suppression de l'ancien fichier " .. fichier.cheminLocal)
-    end
+  if fs.exists(fichier.cheminLocal) then
+      local success, err = pcall(fs.delete, fichier.cheminLocal)
+      if success then
+          print("Suppression de l'ancien fichier " .. fichier.cheminLocal)
+      else
+          print("Erreur lors de la suppression de l'ancien fichier " .. fichier.cheminLocal .. ": " .. err)
+      end
+  end
 end
 
 -- Télécharge chaque fichier depuis GitHub
