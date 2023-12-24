@@ -21,7 +21,7 @@ for _, fichier in ipairs(fichiers) do
         -- Enregistre le contenu téléchargé localement
         local programme = fs.open(fichier.cheminLocal, "w")
         programme.write(contenu.readAll())
-        programme.close()
+        programme.close() 
 
         -- Exécute le code du programme
         local success, err = pcall(dofile, fichier.cheminLocal)
