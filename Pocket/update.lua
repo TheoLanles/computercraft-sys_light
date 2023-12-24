@@ -3,7 +3,7 @@ local textColor = colors.black
 
 term.setBackgroundColor(backgroundColor)
 term.clear()
-term.setCursorPos(1, 1)
+term.setCursorPos(1, 1) 
 term.setTextColor(textColor)
 
 local utilisateur = "TheoLanles"
