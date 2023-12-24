@@ -1,4 +1,4 @@
--- Client (Computer2)
+-- Client (Computer2) 
 -- Assurez-vous d'avoir activé Rednet sur le client.
 
 local modemSide = "top" -- Côté du modem
