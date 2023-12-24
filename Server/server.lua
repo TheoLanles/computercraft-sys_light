@@ -1,4 +1,4 @@
--- Serveur (Computer1)
+-- Serveur (Computer1) 
 -- Assurez-vous d'avoir activé Rednet sur le serveur.
 
 local modemSide = "top" -- Cote du modem
