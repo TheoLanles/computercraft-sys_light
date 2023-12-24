@@ -1,4 +1,4 @@
--- Fonction pour afficher une séquence de démarrage de style Windows sans logo
+-- Fonction pour afficher une séquence de démarrage de style Windows sans logo 
 function displayWindowsStartup()
     local screenWidth, screenHeight = term.getSize()
 
